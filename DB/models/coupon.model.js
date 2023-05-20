@@ -1,0 +1,36 @@
+import mongoose, { model, Schema, Types } from "mongoose";
+
+const couponSchema = new Schema(
+  {
+    name: { type: String, required: true, unique: true, lowercase: true },
+    image: { type: Object },
+    amount: {
+      type: Number,
+      required: true,
+      default: 1,
+    },
+    createdBy: {
+      type: Types.ObjectId,
+      required: true,
+      ref: "User",
+    },
+    updatedBy: {
+      type: Types.ObjectId,
+      ref: "User",
+    },
+    expireDate: { type: Date, required: true },
+    usedBy: [
+      {
+        type: Types.ObjectId,
+        ref: "User",
+      },
+    ],
+    isDeleted: { type: Boolean, default: false },
+  },
+  {
+    timestamps: true,
+  }
+);
+
+const couponModel = mongoose.models.Coupon || model("Coupon", couponSchema);
+export default couponModel;
