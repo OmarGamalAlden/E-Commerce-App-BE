@@ -1,5 +1,5 @@
 import { Router } from "express";
-import auth, { roles } from "../../middleware/authentication.js";
+import auth from "../../middleware/authentication.js";
 import { validation } from "../../middleware/validation.js";
 import { fileUpload, fileTypes } from "../../utils/cloudMulter.js";
 import subCategoryRouter from "../subcategory/subcategory.router.js";
