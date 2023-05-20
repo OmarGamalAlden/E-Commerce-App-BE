@@ -14,7 +14,6 @@ categoryRouter.use("/:categoryId/subCategory", subCategoryRouter);
 //Category Routes...
 categoryRouter.get(
   "/",
-  auth(Object.values(roles)),
   categoryController.getCategory
 );
 
