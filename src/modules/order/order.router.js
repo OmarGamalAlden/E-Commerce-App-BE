@@ -6,7 +6,6 @@ import { endPoint } from "./order.endPoint.js";
 import { validation } from "../../middleware/validation.js";
 const orderRouter = Router();
 
-
 orderRouter.post(
   "/create",
   auth(endPoint.createOrder),
@@ -26,5 +25,11 @@ orderRouter.patch(
   auth(endPoint.updateOrderStatusByAdmin),
   validation(validators.updateOrderStatusByAdmin),
   orderController.updateOrderStatusByAdmin
+);
+
+orderRouter.post(//check payment condition
+  "/webhook",
+  express.raw({ type: "application/json" }),
+  orderController.webhook
 );
 export default orderRouter;
